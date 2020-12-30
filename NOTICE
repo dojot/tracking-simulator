@@ -1,0 +1,28 @@
+trackingsim
+
+It is licensed under Apache License, Version 2.0.
+
+It uses libraries, which are available under the following licenses:
+
+* Apache License, Version 2.0
+     - requests (source code available at https://github.com/psf/requests)
+
+* MIT
+     - geographiclib (source code available at https://sourceforge.net/p/geographiclib/code)
+     - geopy (source code available at https://github.com/geopy/geopy)
+     - urllib3 (source code available at https://github.com/urllib3/urllib3)
+
+* BSD (3-Clause)
+     - numpy (source code available at https://github.com/numpy/numpy)
+
+* BSD-Like
+     - idna (source code available at https://github.com/kjd/idna)
+
+* MPL 2.0
+     - certifi (source code available at https://github.com/certifi/python-certifi)
+
+* Eclipse Public License v1.0 / Eclipse Distribution License 1.0
+     - paho-mqtt (source code available at https://github.com/eclipse/paho.mqtt.python)
+
+* LGPL
+     - chardet (source code available at https://github.com/chardet/chardet)

@@ -24,9 +24,11 @@ class Simulator:
         self.__origin = Point(latitude, longitude)
         self.__current_position = Point(latitude, longitude)
         self.__mqttc = mqtt.Client("{}:{}".format(tenant,device))
+        self.__mqttc.username_pw_set("{}:{}".format(tenant,device)) # not necessary with iotagent-mosca
         self.__mqttc.connect(host=host, port=port)
         self.__mqttc.loop_start()
-        self.__topic = "/{0}/{1}/attrs".format(tenant, device)
+        self.__topic = "{0}:{1}/attrs".format(tenant, device)
+        # self.__topic = "/{0}/{1}/attrs".format(tenant, device) # iotagent-mosca topic
         self.__sleep = np.random.uniform(self.__class__.MIN_SLEEP_TIME, self.__class__.MAX_SLEEP_TIME)
         self.__logger.info("Starting simulation for device {0} with sleep time {1}".format(device, self.__sleep))
 

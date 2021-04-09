@@ -79,8 +79,8 @@ class Simulator:
         bearing = np.random.uniform(self.__class__.MIN_BEARING, self.__class__.MAX_BEARING)
 
         # next point
-        next_position = distance.vincenty(kilometers=displacement).destination(self.__current_position, bearing)
-        while (distance.vincenty(self.__origin, next_position).kilometers
+        next_position = distance.distance(kilometers=displacement).destination(self.__current_position, bearing)
+        while (distance.distance(self.__origin, next_position).kilometers
                    > self.__class__.MAX_DISPLACEMENT_FROM_ORIGIN):
             # displacement
             displacement = np.random.uniform(self.__class__.MIN_DISPLACEMENT, self.__class__.MAX_DISPLACEMENT)
@@ -89,7 +89,7 @@ class Simulator:
             bearing = np.random.uniform(self.__class__.MIN_BEARING, self.__class__.MAX_BEARING)
 
             # next point
-            next_position = distance.vincenty(kilometers=displacement).destination(self.__current_position, bearing)
+            next_position = distance.distance(kilometers=displacement).destination(self.__current_position, bearing)
 
         return next_position, displacement, bearing
 
@@ -101,20 +101,20 @@ class Simulator:
         bearing = self.__bearing
 
         # next point
-        next_position = distance.vincenty(kilometers=displacement).destination(self.__current_position, bearing)
-        if (distance.vincenty(self.__origin, next_position).kilometers
+        next_position = distance.distance(kilometers=displacement).destination(self.__current_position, bearing)
+        if (distance.distance(self.__origin, next_position).kilometers
                    > self.__class__.MAX_DISPLACEMENT_FROM_ORIGIN):
 
             # direction
             bearing = (self.__bearing + 180) % 360
 
             # next point
-            next_position = distance.vincenty(kilometers=displacement).destination(self.__current_position, bearing)
+            next_position = distance.distance(kilometers=displacement).destination(self.__current_position, bearing)
 
         return next_position, displacement, bearing
 
     def __get_next_sinr(self):
-        displacement_from_origin = distance.vincenty(self.__origin, self.__current_position).kilometers
+        displacement_from_origin = distance.distance(self.__origin, self.__current_position).kilometers
         relative_displacement = displacement_from_origin / self.MAX_DISPLACEMENT_FROM_ORIGIN
 
         if relative_displacement < 0.15:
